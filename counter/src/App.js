@@ -18,11 +18,11 @@ function App() {
       <div className="counter">
         <label className={count === 0 ? 'zero' : ''}>Counter: {count}</label>
       </div>
-      <button className="increment-button" onClick={increment}>
-        Increment
-      </button>
       <button className="reset-button" onClick={reset}>
         Reset
+      </button>
+      <button className="increment-button" onClick={increment}>
+        Increment
       </button>
     </div>
   );
