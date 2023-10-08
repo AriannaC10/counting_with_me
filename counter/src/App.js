@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import chuck from './images/chuck-norris.png'
 
 const getChuckNorrisJokes = async () => {
   console.log('here1')
@@ -45,10 +46,21 @@ function App() {
       <button className="increment-button" onClick={increment}>
         Increment
       </button>
-      <h3>Bonus joke: </h3>
-      <body>
+      
+      <div className="joke">
+        <div className="joke_title">
+          <img src={chuck} alt="" style={{
+            height: "80px",
+            padding: "10px 0px 10px 0px",
+          }}
+          />
+          <subtitle>Bonus joke: </subtitle>
+        </div>
+
+        <br/>
+
         {joke}
-      </body>
+      </div>
     </div>
   );
 }
