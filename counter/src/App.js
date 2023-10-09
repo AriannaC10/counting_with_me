@@ -1,16 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import chuck from './images/chuck-norris.png'
+
+const getChuckNorrisJokes = async () => {
+  console.log('here1')
+  const data = await fetch('https://api.chucknorris.io/jokes/random').then((res)=>res.json())
+  return data.value;
+}
 
 function App() {
   const [count, setCount] = useState(0); //saving numbers in a state
+  const [joke, setJoke] = useState(null)
 
   const increment = () => { //function to increment the counter
     setCount(count + 1);
+    getJoke();
   };
 
   const reset = () => { //function to reset the counter
     setCount(0);
   };
+
+  const getJoke = async () => {
+      const apiData = await getChuckNorrisJokes();
+      setJoke(apiData)
+  }
+
+  useEffect(()=>{
+  
+    getJoke();
+
+  }, [])
+
 
   return (
     <div className="App">
@@ -24,6 +45,21 @@ function App() {
       <button className="increment-button" onClick={increment}>
         Increment
       </button>
+      
+      <div className="joke">
+        <div className="joke_title">
+          <img src={chuck} alt="" style={{
+            height: "80px",
+            padding: "10px 0px 10px 0px",
+          }}
+          />
+          <subtitle>Bonus joke: </subtitle>
+        </div>
+
+        <br/>
+
+        {joke}
+      </div>
     </div>
   );
 }
