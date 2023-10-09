@@ -23,7 +23,6 @@ function App() {
 
   const getJoke = async () => {
       const apiData = await getChuckNorrisJokes();
-      console.log('hereee', apiData)
       setJoke(apiData)
   }
 
