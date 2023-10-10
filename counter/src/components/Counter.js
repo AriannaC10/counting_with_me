@@ -3,7 +3,6 @@ import './Counter.css';
 import chuck from '../images/chuck-norris.png';
 
 const getChuckNorrisJokes = async () => {
-  console.log('here1');
   const data = await fetch('https://api.chucknorris.io/jokes/random').then((res) => res.json());
   return data.value;
 };
