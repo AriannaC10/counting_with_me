@@ -1,8 +1,18 @@
-# Getting Started with Create React App
+# How to run the Counter App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Run application with docker
 
-## Available Scripts
+To use docker, in the current folder (counting_with_me/counter), run the following commands:
+
+### 1. `docker build . -t counter`
+This will build the cointainer image for running Counter app.
+
+### 2.  `docker run -p 3000:3000 --name counter counter`
+This will run the container with the Counter App.
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to interact with the application!
+
+## Available Scripts (to run without docker)
 
 In the project directory, you can run:
 
