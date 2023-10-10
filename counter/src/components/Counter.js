@@ -1,75 +1,74 @@
-import React, { PureComponent } from 'react';
-import './Counter.css';
+import React, { useState, useEffect } from 'react';
+import { Button, Typography, Box, Card, CardMedia, CardContent } from '@mui/material';
 import chuck from '../images/chuck-norris.png';
 
 const getChuckNorrisJokes = async () => {
+  console.log('here1');
   const data = await fetch('https://api.chucknorris.io/jokes/random').then((res) => res.json());
   return data.value;
 };
 
-class Counter extends PureComponent {
-  constructor(props) {
-    super(props);
+function Counter() {
+  const [count, setCount] = useState(0);
+  const [joke, setJoke] = useState(null);
 
-    this.state = {
-      count: 0,
-      joke: null,
-    };
-  }
-
-  increment = () => {
-    this.setState({ count: this.state.count + 1 }, this.getJoke);
+  const increment = () => {
+    setCount(count + 1);
+    getJoke();
   };
 
-  reset = () => {
-    this.setState({ count: 0 });
+  const reset = () => {
+    setCount(0);
   };
 
-  getJoke = async () => {
+  const getJoke = async () => {
     const apiData = await getChuckNorrisJokes();
-    this.setState({ joke: apiData });
+    setJoke(apiData);
   };
 
-  componentDidMount() {
-    this.getJoke();
-  }
+  useEffect(() => {
+    getJoke();
+  }, []);
 
-  render() {
-    const { count, joke } = this.state;
-
-    return (
-      <div>
-        <h2 className='title'>We are serving number...</h2>
-        <div className='counter'>
-          <label className={count === 0 ? 'zero' : ''}>Counter: {count}</label>
-        </div>
-        <button className='reset-button' onClick={this.reset}>
+  return (
+    <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+      <Typography variant='h2' fontSize={'36px'} color={'#2196f3'} marginBottom={'20px'}>We are serving number...</Typography>
+      <Typography variant='h2' fontSize={'24px'} color={count === 0 ? '#9e9e9e' : 'black'} marginBottom={'20px'}>Counter: {count}</Typography>
+      <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+        <Button variant='contained' color='primary' onClick={reset}>
           Reset
-        </button>
-        <button className='increment-button' onClick={this.increment}>
+        </Button>
+        <Button variant='contained' color='secondary' onClick={increment} sx={{ml: 2}}>
           Increment
-        </button>
-
-        <div className='joke'>
-          <div className='joke_title'>
-            <img
-              src={chuck}
-              alt=''
-              style={{
-                height: '80px',
-                padding: '10px 0px 10px 0px',
-              }}
-            />
-            <subtitle>Bonus joke: </subtitle>
-          </div>
-
-          <br />
-
-          {joke}
-        </div>
-      </div>
-    );
-  }
+        </Button>
+      </Box>
+      <Card sx={{ display: 'flex', width: '50%', justifyContent: 'center', alignItems: 'center', mt: 5}}>
+        <CardMedia
+          component="img"
+          sx={{ width: '151px', height: '130px',
+          padding: '10px 0px 10px 0px', }}
+          image={chuck}
+          alt=""
+        />
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <CardContent >
+            <Typography  variant="h5" color={'#546e7a'}>
+              Bonus Joke
+            </Typography>
+            <Typography variant="subtitle1" color="text.secondary" component="div">
+              Increment to see the joke chosen for you!
+            </Typography>
+          </CardContent>
+          <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
+            <Typography variant='body' color={'#607d8b'}>
+              {joke}
+            </Typography>
+          </Box>
+        </Box>
+        
+    </Card>
+    </Box>
+  );
 }
 
 export default Counter;
