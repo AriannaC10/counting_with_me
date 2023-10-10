@@ -1,0 +1,67 @@
+.title {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #2196f3; 
+}
+
+.counter {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.counter label.zero {
+  color: #9e9e9e; 
+}
+
+.increment-button {
+  background-color: #2196f3; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.increment-button:hover {
+  background-color: #1976d2; 
+}
+
+/* Change the background color when the button is pressed */
+.increment-button:active {
+  background-color: #2962ff; 
+}
+
+.reset-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.reset-button:hover {
+  background-color: #d32f2f; 
+}
+
+/* Change the background color when the button is pressed */
+.reset-button:active {
+  background-color: #263238; 
+}
+
+/* Joke div styling */
+.joke{
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #607d8b;
+}
+
+.joke_title{
+  font-size: 28px;
+  color: #546e7a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
